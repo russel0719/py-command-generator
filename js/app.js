@@ -63,7 +63,7 @@ function handleParse() {
 
   argsSection.hidden = false;
   commandSection.hidden = false;
-  argsSection.scrollIntoView({ behavior: 'smooth' });
+  commandSection.scrollIntoView({ behavior: 'smooth' });
 
   updateCommand();
 }
@@ -116,6 +116,7 @@ function generateCommand(env, prefix, script, values, argDefs) {
       }
     } else {
       if (val !== undefined && val !== '' && val !== null) {
+        if (argDef.default !== null && argDef.default !== undefined && String(val) === String(argDef.default)) continue;
         parts.push(flag, shellQuote(String(val)));
       }
     }

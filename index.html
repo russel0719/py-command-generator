@@ -49,8 +49,22 @@ parser.add_argument('--verbose', action='store_true')"
     <div id="warnings" hidden></div>
 
     <!-- 2. 인자 설정 -->
+    <!-- 2. 생성된 명령어 -->
+    <section class="card" id="command-section" hidden>
+      <h2>2. 생성된 명령어</h2>
+      <div class="command-box">
+        <code id="command-text"></code>
+        <button id="copy-btn" class="btn btn-icon" title="클립보드에 복사">
+          <span id="copy-icon">복사</span>
+        </button>
+      </div>
+      <div class="actions">
+        <button id="save-history-btn" class="btn btn-secondary">히스토리에 저장</button>
+      </div>
+    </section>
+
     <section class="card" id="args-section" hidden>
-      <h2>2. 명령어 옵션 설정</h2>
+      <h2>3. 명령어 옵션 설정</h2>
 
       <div class="script-row">
         <div class="form-group inline flex-1">
@@ -76,20 +90,6 @@ parser.add_argument('--verbose', action='store_true')"
       </div>
 
       <div id="args-form"></div>
-    </section>
-
-    <!-- 3. 생성된 명령어 -->
-    <section class="card" id="command-section" hidden>
-      <h2>3. 생성된 명령어</h2>
-      <div class="command-box">
-        <code id="command-text"></code>
-        <button id="copy-btn" class="btn btn-icon" title="클립보드에 복사">
-          <span id="copy-icon">복사</span>
-        </button>
-      </div>
-      <div class="actions">
-        <button id="save-history-btn" class="btn btn-secondary">히스토리에 저장</button>
-      </div>
     </section>
 
     <!-- 히스토리 -->
