@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Argparse Command Generator</title>
+  <meta name="description" content="Python argparse 코드를 붙여넣으면 명령어를 쉽게 조합할 수 있는 도구입니다.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Argparse Command Generator</h1>
+      <p>Python argparse 스크립트를 분석해 명령어를 쉽게 조합합니다</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 1. 코드 입력 -->
+    <section class="card" id="input-section">
+      <h2>1. Python 코드 입력</h2>
+      <div id="dropzone">
+        <textarea
+          id="code-input"
+          placeholder="Python argparse 코드를 여기에 붙여넣으세요...
+
+예시:
+import argparse
+parser = argparse.ArgumentParser(prog='train.py')
+parser.add_argument('input_file')
+parser.add_argument('--epochs', type=int, default=10)
+parser.add_argument('--device', choices=['cpu', 'cuda'], default='cpu')
+parser.add_argument('--verbose', action='store_true')"
+          spellcheck="false"
+        ></textarea>
+        <div id="drop-overlay">
+          <span>.py 파일을 여기에 놓으세요</span>
+        </div>
+      </div>
+      <div class="actions">
+        <label for="file-input" class="btn btn-secondary">파일 열기</label>
+        <input type="file" id="file-input" accept=".py" hidden>
+        <button id="parse-btn" class="btn btn-primary">파싱하기</button>
+        <button id="clear-btn" class="btn btn-ghost">초기화</button>
+      </div>
+    </section>
+
+    <!-- 경고 -->
+    <div id="warnings" hidden></div>
+
+    <!-- 2. 인자 설정 -->
+    <section class="card" id="args-section" hidden>
+      <h2>2. 명령어 옵션 설정</h2>
+
+      <div class="script-row">
+        <div class="form-group inline flex-1">
+          <label for="env-vars">환경변수</label>
+          <input type="text" id="env-vars" placeholder="CUDA_VISIBLE_DEVICES=1">
+        </div>
+      </div>
+
+      <div class="script-row">
+        <div class="form-group inline">
+          <label for="exec-prefix">실행</label>
+          <select id="exec-prefix">
+            <option value="python">python</option>
+            <option value="python3">python3</option>
+            <option value="uv run">uv run</option>
+            <option value="">없음</option>
+          </select>
+        </div>
+        <div class="form-group inline flex-1">
+          <label for="script-name">스크립트</label>
+          <input type="text" id="script-name" placeholder="script.py">
+        </div>
+      </div>
+
+      <div id="args-form"></div>
+    </section>
+
+    <!-- 3. 생성된 명령어 -->
+    <section class="card" id="command-section" hidden>
+      <h2>3. 생성된 명령어</h2>
+      <div class="command-box">
+        <code id="command-text"></code>
+        <button id="copy-btn" class="btn btn-icon" title="클립보드에 복사">
+          <span id="copy-icon">복사</span>
+        </button>
+      </div>
+      <div class="actions">
+        <button id="save-history-btn" class="btn btn-secondary">히스토리에 저장</button>
+      </div>
+    </section>
+
+    <!-- 히스토리 -->
+    <section class="card" id="history-section">
+      <div class="section-header">
+        <h2>명령어 히스토리</h2>
+        <button id="clear-history-btn" class="btn btn-ghost btn-sm" hidden>전체 삭제</button>
+      </div>
+      <div id="history-list"></div>
+      <p id="history-empty" class="empty-msg">저장된 히스토리가 없습니다.</p>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
