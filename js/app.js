@@ -94,9 +94,9 @@ function generateCommand(env, prefix, script, values, argDefs) {
     const flag = argDef.primaryFlag || `--${argDef.name.replace(/_/g, '-')}`;
 
     if (argDef.action === 'store_true') {
-      if (val === true) parts.push(flag);
+      if (val === true && val !== argDef.default) parts.push(flag);
     } else if (argDef.action === 'store_false') {
-      if (val === false) parts.push(flag);
+      if (val === false && val !== argDef.default) parts.push(flag);
     } else if (argDef.action === 'count') {
       const count = parseInt(val, 10) || 0;
       for (let i = 0; i < count; i++) parts.push(flag);
