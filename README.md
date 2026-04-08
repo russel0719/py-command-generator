@@ -112,5 +112,6 @@ git push -u origin main
 ## 제한 사항 (Limitations)
 
 - `add_subparsers()` 기반 서브커맨드 구조는 부분적으로만 지원
-- 런타임에 동적으로 생성되는 인자는 파싱 불가
+- 런타임에 동적으로 생성되는 인자 (`if condition: parser.add_argument(...)`) 파싱 불가
 - Python 코드의 실제 실행 없이 정적 텍스트 분석에만 의존
+- 히스토리 저장 시 환경변수(`CUDA_VISIBLE_DEVICES` 등)는 저장되지 않음
